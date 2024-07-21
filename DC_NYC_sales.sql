@@ -1,6 +1,6 @@
 --DATA CLEANING:
 
---Load in the data
+--View the data
 SELECT *
 FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc`
 
@@ -158,7 +158,7 @@ FROM b
 WHERE Row_num = 1 AND SALE_PRICE > 0
 
 
---Sale price accuracy is still limited in the data, because the issue with sale price in multi-sale transactions is still not controlled for sales that took place on different days/months or in different buildings. Even though certain deals didn't close on the same day/in the same building, they are still considered multi-sale transactions. The above code only controls for sales that occurred in the same building and on the same day.
+--Note: Sale prices in multi-sale transactions are still not controlled for sales that took place on different days/months or in different buildings. Even though certain deals didn't close on the same day/in the same building, they are still considered multi-sale transactions. The above code only controls for sales that occurred in the same building and on the same day.
 SELECT a.id, a.ADDRESS_CLEAN, a.MONTH, b.MONTH
 FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc` a
 JOIN `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc_SALE_PRICE_FINAL` b
