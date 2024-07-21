@@ -43,15 +43,22 @@ Add viz's if possible here for EDA
 
 ### Data Analysis
 
-Through my analaysis, I employed different techniques, including aggregations, CTE's, joins, window functions, case statements, etc. to answer the above questions. The following code used a join and an aggregation to find the average price and sale count per building type and borough:
+Through my analaysis, I employed different techniques, including aggregations, CTE's, joins, window functions, case statements, etc. to answer the above questions. The following code used a CTE and a join to find the average price and sale count per building type and borough:
 
 ```sql
-SELECT a.BOROUGH_CLEAN, a.BUILDING_CLASS_CATEGORY, ROUND(AVG(b.SALE_PRICE), 0) AS avg_price, COUNT(a.id) AS sale_count
-FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc` as a
-JOIN `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc_SALE_PRICE_FINAL` as b
-ON a.id = b.id
-GROUP BY a.BOROUGH_CLEAN, a.BUILDING_CLASS_CATEGORY
-ORDER BY a.BOROUGH_CLEAN, avg_price DESC
+WITH above_average_sales AS (
+    SELECT id, BOROUGH_CLEAN, NEIGHBORHOOD
+    FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc_SALE_PRICE_FINAL`
+    WHERE SALE_PRICE > 1549346.0
+),
+q1 AS (
+    SELECT id, BOROUGH_CLEAN, NEIGHBORHOOD, SALE_PRICE
+    FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc_SALE_PRICE_FINAL`
+    WHERE MONTH IN ('January', 'February', 'March')
+)
+SELECT a.id, a.BOROUGH_CLEAN, a.NEIGHBORHOOD, q1.SALE_PRICE
+FROM above_average_sales a
+JOIN q1 ON a.id = q1.id
 ```
 
 The following code used a CTE, cast, CASE statement, and an aggregation to determine in what decades were buildings built that had units sold during this time period, and how many buildings were built in each decade.
@@ -92,10 +99,14 @@ ORDER BY b.DECADE
 
 ### Results/Findings
 
+- How many sales occurred in each borough and neighborhood? Where do most sales occur?
+- How does sale volume change over time?
+- How do building characteristics affect sale volume? What building types are trading and where?
+
 The analysis results are summarized as follows:
-1. Although Manhattan and Brooklyn led with the highest crime counts between 1/1/2024-3/31/2024, the Bronx experienced the highest rate of crime when you factor in the population per borough. Additionally, although Staten Island's crime count was an outlier in that it was significantly lower than the others, it's rate of crime was still relatively comparable to the other boroughs. See below for a table that includes the population, crime count, crime count / population, and the standardization score to compare the crime rates:
-2. The most likely perpetrator between 1/1/2024-3/31/2024 was a black male between the ages of 25-44.
-3. The most common charge overall was "Assault 3". However, In Manhattan and Queens, Assault 3 fell slightly behind the "LARCENY,PETIT FROM OPEN AREAS" charge.
+1. Most sales occured
+2. 
+3.
 
 ### Implications/Recommendations:
 
