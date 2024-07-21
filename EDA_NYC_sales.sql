@@ -172,19 +172,19 @@ ORDER BY a.id
 
 --Q1 Sales Above Average Price
 WITH above_average_sales AS (
-SELECT id, BOROUGH_CLEAN, NEIGHBORHOOD
-FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc_SALE_PRICE_FINAL`
-WHERE SALE_PRICE > 1549346.0
+    SELECT id, BOROUGH_CLEAN, NEIGHBORHOOD
+    FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc_SALE_PRICE_FINAL`
+    WHERE SALE_PRICE > 1549346.0
 ),
 q1 AS (
-SELECT id, BOROUGH_CLEAN, NEIGHBORHOOD, SALE_PRICE
-FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc_SALE_PRICE_FINAL`
-WHERE MONTH = 'January' OR MONTH = 'February' OR MONTH = 'March'
+    SELECT id, BOROUGH_CLEAN, NEIGHBORHOOD, SALE_PRICE
+    FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc_SALE_PRICE_FINAL`
+    WHERE MONTH IN ('January', 'February', 'March')
 )
-SELECT above_average_sales.id, above_average_sales.BOROUGH_CLEAN, above_average_sales.NEIGHBORHOOD, q1.SALE_PRICE
-FROM above_average_sales
-JOIN q1
-ON above_average_sales.id = q1.id
+SELECT a.id, a.BOROUGH_CLEAN, a.NEIGHBORHOOD, q1.SALE_PRICE
+FROM above_average_sales a
+JOIN q1 ON a.id = q1.id;
+
 
 --Standardize pricing
 SELECT
