@@ -6,9 +6,6 @@
 
 The goal of this project was to explore residential transactions in NYC to discover trends in both the number of sales and sale prices across multiple variables, including borough, neighborhood, month, and building type. The data set consists of one full year of all market and non-market sales that closed between June 2023 - May 2024. The data includes location information (borough, neighborhood, address, block/lot number, zip code), information about the building (building class/building class category, year built, tax class, square footage) and information on the sale (sale price/date).
 
-<img width="253" alt="Screen Shot 2024-06-11 at 10 41 54 PM" src="https://github.com/austinsmithers/Project-1/assets/172429232/7fda4439-bd27-4491-86aa-dae2469ac58e">
-
-
 ### Data Sources
 
 The primary dataset used for this analysis is "rollingsales_nyc.csv" containing detailed information from data.gov on all real estate sale transactions that occurred in New York City from June 2023 to May 2024.
@@ -34,8 +31,6 @@ In the initial data preparation phase, I performed the following:
 ### Exploratory Data Analysis
 
 My EDA involved exploring the data to answer key questions:
-
-Add viz's if possible here for EDA
 
 - How many sales occurred in each borough and neighborhood? Where do most sales occur?
 - How does sale volume change over time?
@@ -104,31 +99,20 @@ ORDER BY b.DECADE
 - How do building characteristics affect sale volume? What building types are trading and where?
 
 The analysis results are summarized as follows:
-1. Most sales occured
-2. 
-3.
+1. Most sales occured in Queens compared to any other borough. Flushing-North, Queens had the most sales of any neighborhood. In contrast, Manhattan had the highest overall average price per transaction.
+2. The months with the highest levels of sales were August, June and October. Something to note is that sales are recorded at the time of closing, which comes about 3-4 months after the initial offer/contract signing. This means that buyer interest/activity is spiking roughly in March, May and July.
+3. Co-ops in elevator buildings, one-family dwellings, and condos in elevator apartments were the most popular apartments that traded. Additionally, buildings built in the 1920's were the most popular to buyers during this period.
 
 ### Implications/Recommendations:
 
-If this project were for the purpose of reducing crime in NYC, based off of the EDA, I would narrow in on the specific locations within each borough with high concentrations of crime. This would require me to pinpoint the specific areas of each borough where crime is the most prevalent. I would also want to evaluate the different "perp characteristics" (age, race, gender) across crime types. By predicting who is most likely to commit certain crimes, we could then conduct further research to determine why some crimes are committed in certain communities vs. others. Ultimately, the goal would be to provide the correct funding or support for programs, education, housing, etc. in order to reduce this crime.
+Given the data, I would have different recommendations depending on my role as an agent (advising a buyer or a seller). As a buyer's agent, I would advise my client to look at apartments during months that have less activity if they are looking for a deal. If they want more options, they should look during the busier months. Lastly, if they are flexible on location, I would have them look in boroughs/neighborhoods that are just starting to gain popularity. This could help them build equity over time if they are looking to keep the apartment long-term.
+As a sellers agent, I would advise my clients to put their apartment on the market during the months that experience the highest buyer activity (March, May and July). Additionally, I would encourage clients with apartments in single-family homes or co-op/condo elevator buildings from the 1920's-1930's to consider selling now, since that is what people want in today's market.
 
 ### Limitations
 
-There were a few limitations within this data set. One limitation was that it only spanned a 3 month duration. It would be beneficial to see trends over the years to get an accurate depiction of the crime rate over time. Additionally, the crime descriptions were a little vague. It's possible to look up the meaning of all of them and then add in a new column in the data set, but it would take time. Lastly, it's important to note that this data does not provide much context. It is important not to draw conclusions or form prejudices based on the common "perp profile" that was illustrated. Rather, this EDA should inspire you to learn more about why certain types of people are arrested, predisposed to criminality, and, most importantly, what can be done to help them.
+There were a few limitations within this data set. One limitation was that each row (apartment) included in a multi-sale transaction did not report the individual sale price for that apartment, but rather the sale price for all of the apartments in the multi-sale transaction. This resulted in an inflated sale volume when analyzing the data. Although I was able to control for some of these transactions, others were not controlled for if the transactions did not close on the same day, in the same building, or if the same building address was written differently for different apartments. Therefore, it is important to note that these numbers might be slightly inflated across all boroughs. I mostly included this field in my analysis to understand how boroughs ranked against each other, rather than to determine accurate sale prices. Additionally, I intended to only analyze residential buildings, but the building categories included in the data set did not fully separate residential and commercial buildings. This fact also may be contributing to inflated sales volume, since commercial listings are often more expensive. Since I was mainly looking for trends and practicing my SQL skills, I continued on with my analysis. If I were to actually use this data set with a client, I would focus on a smaller section of the data, making sure to go through and completely control for the multi-sale transactions and remove all commercial buildings.
 
 ### References
 
-1. SQL for Businesses by werty
+1. SQL in BigQuery
 2. [Data.gov](https://data.gov/)
-
-Thank you for reading!
-
-| Year | Sales |
-| ---------- | ---------- |
-| 2010 | $1M |
-| 2011 | $4M |
-
-<!--
-hello
--->
-hello
