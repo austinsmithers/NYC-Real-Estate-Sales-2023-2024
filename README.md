@@ -12,7 +12,7 @@ The primary dataset used for this analysis is "rollingsales_nyc.csv" containing 
 
 ### Tools
 
-- SQL Server - Data Analysis
+- BigQuery - Data Analysis
 - Tableau - Creating Report
 
 ### Data Cleaning/Preparation
@@ -115,5 +115,5 @@ There were a few limitations within this data set. One limitation was that each 
 
 ### References
 
-1. SQL in BigQuery
+1. BigQuery
 2. [Data.gov](https://data.gov/)
