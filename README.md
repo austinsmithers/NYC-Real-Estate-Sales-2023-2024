@@ -38,7 +38,7 @@ My EDA involved exploring the data to answer key questions:
 
 ### Data Analysis
 
-Through my analaysis, I employed different techniques, including aggregations, CTE's, joins, window functions, case statements, etc. to answer the above questions. The following code used a CTE and a join to find the average price and sale count per building type and borough:
+Through my analaysis, I employed different techniques, including aggregations, CTE's, joins, window functions, case statements, etc. to answer the above questions. The following code uses 2 CTE's and a join to find the transactions that sold in Q1 (January, February or March) at a price above the total average:
 
 ```sql
 WITH above_average_sales AS (
@@ -49,14 +49,15 @@ WITH above_average_sales AS (
 q1 AS (
     SELECT id, BOROUGH_CLEAN, NEIGHBORHOOD, SALE_PRICE
     FROM `polar-ray-420915.Portfolio_Data_Sets.rollingsales_nyc_SALE_PRICE_FINAL`
-    WHERE MONTH IN ('January', 'February', 'March')
+    WHERE MONTH = 'January' OR MONTH = 'February' OR MONTH = 'March'
 )
-SELECT a.id, a.BOROUGH_CLEAN, a.NEIGHBORHOOD, q1.SALE_PRICE
-FROM above_average_sales a
-JOIN q1 ON a.id = q1.id
+SELECT above_average_sales.id, above_average_sales.BOROUGH_CLEAN, above_average_sales.NEIGHBORHOOD, q1.SALE_PRICE
+FROM above_average_sales
+JOIN q1
+ON above_average_sales.id = q1.id
 ```
 
-The following code used a CTE, cast, CASE statement, and an aggregation to determine in what decades were buildings built that had units sold during this time period, and how many buildings were built in each decade.
+The following code uses a CTE, cast, CASE statement, and an aggregation to determine in what decades were buildings built that had units sold during this time period, and how many buildings were built in each decade.
 
 ```sql
 WITH a AS (
