@@ -115,5 +115,4 @@ There were a few limitations within this data set. One limitation was that each 
 
 ### References
 
-1. BigQuery
-2. [Data.gov](https://data.gov/)
+1. [Data.gov](https://data.gov/)
